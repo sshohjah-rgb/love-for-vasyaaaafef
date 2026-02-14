@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Для телефонов -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Для Васи 💖</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 28px;
+        }
+
+        p {
+            font-size: 18px;
+            max-width: 100%;
+            margin: 15px auto;
+            line-height: 1.5;
+        }
+
+        .main-text {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .timer {
+            background: rgba(255,255,255,0.25);
+            padding: 12px;
+            border-radius: 12px;
+            display: block;
+            margin: 15px auto;
+            font-size: 16px;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        button {
+            background: #ff4b5c;
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 8px;
+            width: 90%;
+            max-width: 300px;
+        }
+
+        button:hover {
+            background: #ff1f3d;
+        }
+
+        audio {
+            margin-top: 15px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .secret {
+            display: none;
+            font-size: 18px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .heart {
+            position: fixed;
+            color: red;
+            font-size: 20px;
+            animation: fall 4s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            from {
+                top: -20px;
+                opacity: 1;
+            }
+            to {
+                top: 100vh;
+                opacity: 0;
+            }
+        }
+
+        /* Для больших экранов */
+        min-width: 768px {
+            h1 {
+                font-size: 42px;
+            }
+
+            p {
+                font-size: 22px;
+            }
+
+            .main-text {
+                font-size: 26px;
+            }
+
+            button {
+                font-size: 18px;
+                width: auto;
+            }
+
+            .timer {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>💘 Для моей любимой Васи 💘</h1>
+
+    <p class="main-text" id="text">
+        Вася, ты — самое прекрасное, что случилось со мной ❤️
+    </p>
+
+    <p>
+        Я хочу провести этот День Святого Валентина с тобой 💞  
+        И всю жизнь рядом с тобой 🥰
+    </p>
+
+    <!-- Таймер -->
+    <div class="timer">
+        💑 Мы вместе уже:
+
+        <span id="timer"></span>
+    </div>
+
+    <!-- Кнопки -->
+    <button onclick="changeText()">Нажми сюда 💌</button>
+    <button onclick="showSecret()">Секрет для тебя 💖</button>
+
+    <!-- Секрет -->
+    <div class="secret" id="secretText">
+        Вася, ты — моя судьба 💍  
+        Я люблю тебя бесконечно ❤️
+    </div>
+
+    <!-- Музыка -->
+    <audio controls autoplay loop>
+        <source src="white-tee.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Тексты
+        const messages = [
+            "Я люблю тебя больше с каждым днём 💖",
+            "Ты моё счастье 😘",
+            "С тобой я настоящий 💫",
+            "Ты моё сердце ❤️",
+            "Я хочу провести его с тобой 💕",
+            "Навсегда с тобой, Вася 💍"
+        ];
+
+        let index = 0;
+
+        function changeText() {
+            document.getElementById("text").textContent = messages[index];
+            index++;
+
+            if (index >= messages.length) {
+                index = 0;
+            }
+        }
+
+        // Секрет
+        function showSecret() {
+            document.getElementById("secretText").style.display =
+
+
+"block";
+        }
+
+        // Таймер с 23 июня 2025
+        const startDate = new Date(2025, 5, 23);
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById("timer").textContent =
+                `${days} дн ${hours} ч ${minutes} мин ${seconds} сек 💞`;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // Сердечки
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.textContent = "❤️";
+
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = Math.random() * 15 + 15 + "px";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+
+        setInterval(createHeart, 400);
+    </script>
+
+</body>
+</html>
